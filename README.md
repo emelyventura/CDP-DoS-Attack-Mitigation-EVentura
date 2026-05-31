@@ -46,16 +46,16 @@ El entorno de red ha sido diseñado sobre la plataforma de emulación **PNETLab*
 ## 6. Capturas de Pantalla (Estructura de Evidencias)
 
 1. **Captura 1: Estado Inicial Limpio.**
-![Estado Inicial](captura1.png)
+![Estado Inicial](Picture.png)
 
 2. **Captura 2: Ejecución del Script.**
-![Ejecución del Script](captura2.png)
+![Ejecución del Script](Picture2.png)
 
 3. **Captura 3: Impacto del Desbordamiento.**
-![Tabla MAC Saturada](captura3.png)
+![Tabla MAC Saturada](Picture3.png)
 
 4. **Captura 4: Mitigación Exitosa.**
-![Mitigación Exitosa](captura4.png)
+![Mitigación Exitosa](Picture4.png)
 
 ## 7. Documentación de Contra-medidas
 Para mitigar este riesgo de forma definitiva en el entorno del puente de red, se aplicó la siguiente regla de filtrado mediante `ebtables`:
@@ -66,27 +66,12 @@ ebtables -A FORWARD -d 01:00:0c:cc:cc:cc -j DROP
 Justificación Técnica de la Defensa:
 La contramedida instruye a las tablas del puente (ebtables) a interceptar y descartar inmediatamente (DROP) en la Capa 2 cualquier trama destinada a la dirección MAC de multidifusión estandarizada de CDP (01:00:0c:cc:cc:cc). Posteriormente, un reinicio administrativo de la interfaz física purga la memoria residual (FDB) de registros basura, impidiendo que el ataque surta efecto y protegiendo los recursos globales del sistema.
 
-
-3. Para guardar, haz clic en el botón verde arriba a la derecha que dice **Commit changes...** (Confirmar cambios) y luego vuelve a hacer clic en **Commit changes** en el cuadro flotante.
-
 ---
 
-## 💻 PASO 3: Publicar el Script (`cdp_dos.py`)
-
-Ahora vamos a crear el archivo del código directamente en la web:
-
-1. En la página principal de tu repositorio, busca un botón que dice **Add file** (Agregar archivo) y selecciona **Create new file** (Crear nuevo archivo).
-2. En el espacio para el nombre del archivo, escribe exactamente: `cdp_dos.py`
-3. En el cuadro grande de texto de abajo, **copia y pega** este código:
 
 ```python
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""
-Laboratorio de Seguridad en Redes: Ataque DoS mediante Inundación CDP
-Estudiante: Emely Ventura
-Matrícula: 20241140
-"""
 
 from scapy.all import *
 import struct
