@@ -2,7 +2,7 @@
 **Estudiante:** Emely Ventura  
 **Matrícula:** 20241140  
 **Fecha:** 31 de mayo de 2026  
-
+**Demostracion en Youtube: https://www.youtube.com/watch?v=1cDbXbErnks&t=7s
 ---
 
 ## 1. Objetivo del Laboratorio
